@@ -36,7 +36,7 @@ public class GildedRose {
 
     private void calculateQuality(Item item) {
         if (isNot(item, "Aged Brie") && isNot(item, "Backstage passes to a TAFKAL80ETC concert")) {
-            if (item.getQuality() > 0) {
+            if (isQualityGreaterThanZero(item)) {
                 if (isNot(item, "Sulfuras, Hand of Ragnaros")) {
                     item.setQuality(item.getQuality() - 1);
                 }
@@ -82,7 +82,7 @@ public class GildedRose {
         if (item.getSellIn() < 0) {
             if (isNot(item, "Aged Brie")) {
                 if (isNot(item, "Backstage passes to a TAFKAL80ETC concert")) {
-                    if (item.getQuality() > 0) {
+                    if (isQualityGreaterThanZero(item)) {
                         if (isNot(item, "Sulfuras, Hand of Ragnaros")) {
                             item.setQuality(item.getQuality() - 1);
                         }
@@ -96,6 +96,10 @@ public class GildedRose {
                 }
             }
         }
+    }
+
+    private static boolean isQualityGreaterThanZero(Item item) {
+        return item.getQuality() > 0;
     }
 
     private static boolean isQualityLessThan50(Item item) {
