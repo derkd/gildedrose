@@ -52,6 +52,18 @@ public class GildedRoseTest {
         assertThat(selectedItem.getSellIn(), is(4));
     }
 
+    @Test
+    public void should_decrease_quality_twice_as_fast_when_sell_in_date_has_passed_for_Elixir_of_the_Mongoose() throws Exception {
+        GildedRose gd = new GildedRose();
+
+        callUpdateQualityAmountOfTimes(gd, 6);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Elixir of the Mongoose");
+        assertThat(selectedItem.getQuality(), is(0));
+        assertThat(selectedItem.getSellIn(), is(-1));
+    }
+
     private void callUpdateQualityAmountOfTimes(GildedRose gd, int calls) {
         for (int i = 0; i < calls; i++)
             gd.updateQuality();
