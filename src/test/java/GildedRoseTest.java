@@ -67,6 +67,16 @@ public class GildedRoseTest {
     }
 
     @Test
+    public void should_increase_quality_by_2_when_sell_in_date_is_passed_for_Aged_Brie() throws Exception {
+        callUpdateQualityAmountOfTimes(gd, 6);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Aged Brie");
+        assertThat(selectedItem.getQuality(), is(10));
+        assertThat(selectedItem.getSellIn(), is(-4));
+    }
+
+    @Test
     public void should_never_exceeds_quality_of_50_for_Aged_Brie() throws Exception {
         callUpdateQualityAmountOfTimes(gd, 27);
 
