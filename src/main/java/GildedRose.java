@@ -59,6 +59,10 @@ public class GildedRose {
                 item.setSellIn(item.getSellIn() - 1);
             }
 
+            if ("Conjured Mana Cake".equals(item.getName())) {
+                item.setQuality(item.getQuality() - 1);
+            }
+
             if (item.getSellIn() < 0) {
                 if (!"Aged Brie".equals(item.getName())) {
                     if (!"Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {

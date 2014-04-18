@@ -136,6 +136,16 @@ public class GildedRoseTest {
         assertThat(selectedItem.getSellIn(), is(0));
     }
 
+    @Test
+    public void should_decrease_quality_twice_as_for_Conjured_Mana_Cake() throws Exception {
+        callUpdateQualityAmountOfTimes(gd, 1);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Conjured Mana Cake");
+        assertThat(selectedItem.getQuality(), is(4));
+        assertThat(selectedItem.getSellIn(), is(2));
+    }
+
     private void callUpdateQualityAmountOfTimes(GildedRose gd, int calls) {
         for (int i = 0; i < calls; i++)
             gd.updateQuality();
