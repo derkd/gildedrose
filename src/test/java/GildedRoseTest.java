@@ -76,6 +76,56 @@ public class GildedRoseTest {
         assertThat(selectedItem.getSellIn(), is(-25));
     }
 
+    @Test
+    public void should_never_increase_or_decrease_quality_for_Sulfuras_Hand_of_Ragnaros() throws Exception {
+        callUpdateQualityAmountOfTimes(gd, 10);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Sulfuras, Hand of Ragnaros");
+        assertThat(selectedItem.getQuality(), is(80));
+        assertThat(selectedItem.getSellIn(), is(0));
+    }
+
+    @Test
+    public void should_increase_quality_by_2_when_only_10_days_are_left_for_Backstage_passes_to_a_TAFKAL80ETC_concert() throws Exception {
+        callUpdateQualityAmountOfTimes(gd, 6);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Backstage passes to a TAFKAL80ETC concert");
+        assertThat(selectedItem.getQuality(), is(27));
+        assertThat(selectedItem.getSellIn(), is(9));
+    }
+
+    @Test
+    public void should_increase_quality_by_3_when_only_5_days_are_left_for_Backstage_passes_to_a_TAFKAL80ETC_concert() throws Exception {
+        callUpdateQualityAmountOfTimes(gd, 11);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Backstage passes to a TAFKAL80ETC concert");
+        assertThat(selectedItem.getQuality(), is(38));
+        assertThat(selectedItem.getSellIn(), is(4));
+    }
+
+    @Test
+    public void should_drop_quality_when_convert_is_over_for_Backstage_passes_to_a_TAFKAL80ETC_concert() throws Exception {
+        callUpdateQualityAmountOfTimes(gd, 16);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Backstage passes to a TAFKAL80ETC concert");
+        assertThat(selectedItem.getQuality(), is(0));
+        assertThat(selectedItem.getSellIn(), is(-1));
+    }
+
+    @Test
+    public void should_never_exceeds_quality_of_50_for_Backstage_passes_to_a_TAFKAL80ETC_concert() throws Exception {
+        callUpdateQualityAmountOfTimes(gd, 15);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Backstage passes to a TAFKAL80ETC concert");
+        assertThat(selectedItem.getQuality(), is(50));
+        assertThat(selectedItem.getSellIn(), is(0));
+    }
+
     private void callUpdateQualityAmountOfTimes(GildedRose gd, int calls) {
         for (int i = 0; i < calls; i++)
             gd.updateQuality();
