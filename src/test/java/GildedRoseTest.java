@@ -1,25 +1,23 @@
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsInstanceOf.instanceOf;
-import static org.junit.Assert.*;
-
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
 
 public class GildedRoseTest {
 
-    @Test
-    public void shouldCreateInstance() throws Exception {
-        GildedRose gd = new GildedRose();
+    private GildedRose gd;
 
-        assertThat(gd, is(instanceOf(GildedRose.class)));
+    @Before
+    public void setUp() throws Exception {
+        gd = new GildedRose();
     }
 
     @Test
     public void should_decrease_quality_and_sell_in_by_1_for_plus5_Dexterity_Vest_after_one_day() throws Exception {
-        GildedRose gd = new GildedRose();
-
         gd.updateQuality();
 
         List<Item> items = gd.getItems();
@@ -30,8 +28,6 @@ public class GildedRoseTest {
 
     @Test
     public void should_decrease_quality_twice_as_fast_when_sell_in_date_has_passed_for_plus5_Dexterity_Vest() throws Exception {
-        GildedRose gd = new GildedRose();
-
         callUpdateQualityAmountOfTimes(gd, 11);
 
         List<Item> items = gd.getItems();
@@ -42,8 +38,6 @@ public class GildedRoseTest {
 
     @Test
     public void should_decrease_quality_and_sell_in_by_1_for_Elixir_of_the_Mongoose_after_one_day() throws Exception {
-        GildedRose gd = new GildedRose();
-
         gd.updateQuality();
 
         List<Item> items = gd.getItems();
@@ -54,8 +48,6 @@ public class GildedRoseTest {
 
     @Test
     public void should_decrease_quality_twice_as_fast_when_sell_in_date_has_passed_for_Elixir_of_the_Mongoose() throws Exception {
-        GildedRose gd = new GildedRose();
-
         callUpdateQualityAmountOfTimes(gd, 6);
 
         List<Item> items = gd.getItems();
@@ -66,8 +58,6 @@ public class GildedRoseTest {
 
     @Test
     public void should_increase_in_quality_the_older_it_gets_for_Aged_Brie() throws Exception {
-        GildedRose gd = new GildedRose();
-
         gd.updateQuality();
 
         List<Item> items = gd.getItems();
@@ -78,8 +68,6 @@ public class GildedRoseTest {
 
     @Test
     public void should_never_exceeds_quality_of_50_for_Aged_Brie() throws Exception {
-        GildedRose gd = new GildedRose();
-
         callUpdateQualityAmountOfTimes(gd, 27);
 
         List<Item> items = gd.getItems();
