@@ -17,7 +17,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_decrease_quality_and_sell_in_by_1_for_plus5_Dexterity_Vest() throws Exception {
+    public void should_decrease_quality_and_sell_in_by_1_for_plus5_Dexterity_Vest_after_one_day() throws Exception {
         GildedRose gd = new GildedRose();
 
         gd.updateQuality();
@@ -29,7 +29,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_decrease_quality_and_sell_in_by_1_for_Elixir_of_the_Mongoose() throws Exception {
+    public void should_decrease_quality_and_sell_in_by_1_for_Elixir_of_the_Mongoose_after_one_day() throws Exception {
         GildedRose gd = new GildedRose();
 
         gd.updateQuality();
