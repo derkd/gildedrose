@@ -41,28 +41,41 @@ public class GildedRose {
                     item.setQuality(item.getQuality() - 1);
                 }
             }
-        } else {
-            if (isQualityLessThan50(item)) {
-                item.setQuality(item.getQuality() + 1);
-
-                if (is(item, "Backstage passes to a TAFKAL80ETC concert")) {
-                    if (item.getSellIn() < 11) {
-                        if (isQualityLessThan50(item)) {
-                            item.setQuality(item.getQuality() + 1);
-                        }
-                    }
-
-                    if (item.getSellIn() < 6) {
-                        if (isQualityLessThan50(item)) {
-                            item.setQuality(item.getQuality() + 1);
-                        }
-                    }
-                }
-            }
         }
+
+        calculateAgedBrie(item);
+        calculateBackstagePasses(item);
 
         if (is(item, "Conjured Mana Cake")) {
             item.setQuality(item.getQuality() - 1);
+        }
+    }
+
+    private void calculateAgedBrie(Item item) {
+        if(is(item, "Aged Brie")) {
+            if (isQualityLessThan50(item)) {
+                item.setQuality(item.getQuality() + 1);
+            }
+        }
+    }
+
+    private void calculateBackstagePasses(Item item) {
+        if (is(item, "Backstage passes to a TAFKAL80ETC concert")) {
+            if (isQualityLessThan50(item)) {
+                item.setQuality(item.getQuality() + 1);
+
+                if (item.getSellIn() < 11) {
+                    if (isQualityLessThan50(item)) {
+                        item.setQuality(item.getQuality() + 1);
+                    }
+                }
+
+                if (item.getSellIn() < 6) {
+                    if (isQualityLessThan50(item)) {
+                        item.setQuality(item.getQuality() + 1);
+                    }
+                }
+            }
         }
     }
 
