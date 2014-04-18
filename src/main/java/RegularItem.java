@@ -8,5 +8,6 @@ public class RegularItem extends Item implements CalculationItem {
         if (quality > 0) {
             this.setQuality(this.getQuality() - 1);
         }
+        this.setSellIn(this.getSellIn() - 1);
     }
 }

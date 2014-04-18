@@ -21,5 +21,6 @@ public class BackStagePassItem extends Item implements CalculationItem {
                 }
             }
         }
+        this.setSellIn(this.getSellIn() - 1);
     }
 }

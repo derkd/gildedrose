@@ -7,5 +7,6 @@ public class ConjuredManaCakeItem extends Item implements CalculationItem{
     @Override
     public void calculate() {
         this.setQuality(this.getQuality() - 2);
+        this.setSellIn(this.getSellIn() - 1);
     }
 }

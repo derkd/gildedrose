@@ -43,9 +43,6 @@ public class GildedRose {
     }
 
     private void calculateSellIn(CalculationItem item) {
-        if (isNot(item, "Sulfuras, Hand of Ragnaros")) {
-            item.setSellIn(item.getSellIn() - 1);
-        }
 
         if (item.getSellIn() < 0) {
             if (isNot(item, "Aged Brie")) {

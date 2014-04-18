@@ -8,5 +8,6 @@ public class AgedBrieItem extends Item implements CalculationItem{
         if (quality < 50) {
             this.setQuality(this.getQuality() + 1);
         }
+        this.setSellIn(this.getSellIn() - 1);
     }
 }
