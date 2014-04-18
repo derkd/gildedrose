@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GildedRose {
 
-    private List<Item> items = null;
+    private List<CalculationItem> items = null;
 
     public GildedRose() {
         initializeItems();
@@ -18,79 +18,31 @@ public class GildedRose {
     }
 
     private void initializeItems() {
-        items = new ArrayList<Item>();
-        items.add(new Item("+5 Dexterity Vest", 10, 20));
+        items = new ArrayList<CalculationItem>();
+        items.add(new RegularItem("+5 Dexterity Vest", 10, 20));
         items.add(new AgedBrieItem());
-        items.add(new Item("Elixir of the Mongoose", 5, 7));
-        items.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
-        items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
-        items.add(new Item("Conjured Mana Cake", 3, 6));
+        items.add(new RegularItem("Elixir of the Mongoose", 5, 7));
+        items.add(new SulfurasItem());
+        items.add(new BackStagePassItem());
+        items.add(new ConjuredManaCakeItem());
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            calculateQuality(item);
+        for (CalculationItem item : items) {
+            item.calculate();
             calculateSellIn(item);
         }
     }
 
-    private void calculateQuality(Item item) {
-        if (isNot(item, "Aged Brie") && isNot(item, "Backstage passes to a TAFKAL80ETC concert")) {
-            if (isQualityGreaterThanZero(item)) {
-                if (isNot(item, "Sulfuras, Hand of Ragnaros") && isNot(item, "Conjured Mana Cake")) {
-                    item.setQuality(item.getQuality() - 1);
-                }
-            }
-        }
-
-        calculateAgedBrie(item);
-        calculateBackstagePasses(item);
-        calculateConjuredManaCake(item);
-    }
-
-    private void calculateConjuredManaCake(Item item) {
-        if (is(item, "Conjured Mana Cake")) {
-            item.setQuality(item.getQuality() - 2);
-        }
-    }
-
-    private void calculateAgedBrie(Item item) {
-        if(is(item, "Aged Brie")) {
-            if (isQualityLessThan50(item)) {
-                item.setQuality(item.getQuality() + 1);
-            }
-        }
-    }
-
-    private void calculateBackstagePasses(Item item) {
-        if (is(item, "Backstage passes to a TAFKAL80ETC concert")) {
-            if (isQualityLessThan50(item)) {
-                item.setQuality(item.getQuality() + 1);
-
-                if (item.getSellIn() < 11) {
-                    if (isQualityLessThan50(item)) {
-                        item.setQuality(item.getQuality() + 1);
-                    }
-                }
-
-                if (item.getSellIn() < 6) {
-                    if (isQualityLessThan50(item)) {
-                        item.setQuality(item.getQuality() + 1);
-                    }
-                }
-            }
-        }
-    }
-
-    private static boolean isNot(Item item, String agedBrie) {
+    private static boolean isNot(CalculationItem item, String agedBrie) {
         return !is(item, agedBrie);
     }
 
-    private static boolean is(Item item, String backstage) {
+    private static boolean is(CalculationItem item, String backstage) {
         return backstage.equals(item.getName());
     }
 
-    private void calculateSellIn(Item item) {
+    private void calculateSellIn(CalculationItem item) {
         if (isNot(item, "Sulfuras, Hand of Ragnaros")) {
             item.setSellIn(item.getSellIn() - 1);
         }
@@ -114,15 +66,15 @@ public class GildedRose {
         }
     }
 
-    private static boolean isQualityGreaterThanZero(Item item) {
+    private static boolean isQualityGreaterThanZero(CalculationItem item) {
         return item.getQuality() > 0;
     }
 
-    private static boolean isQualityLessThan50(Item item) {
+    private static boolean isQualityLessThan50(CalculationItem item) {
         return item.getQuality() < 50;
     }
 
-    public List<Item> getItems() {
+    public List<CalculationItem> getItems() {
         return items;
     }
 }
