@@ -29,6 +29,18 @@ public class GildedRoseTest {
     }
 
     @Test
+    public void should_decrease_quality_twice_as_fast_when_sell_in_date_has_passed_for_plus5_Dexterity_Vest() throws Exception {
+        GildedRose gd = new GildedRose();
+
+        callUpdateQualityAmountOfTimes(gd, 11);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "+5 Dexterity Vest");
+        assertThat(selectedItem.getQuality(), is(8));
+        assertThat(selectedItem.getSellIn(), is(-1));
+    }
+
+    @Test
     public void should_decrease_quality_and_sell_in_by_1_for_Elixir_of_the_Mongoose_after_one_day() throws Exception {
         GildedRose gd = new GildedRose();
 
@@ -38,6 +50,11 @@ public class GildedRoseTest {
         Item selectedItem = getItem(items, "Elixir of the Mongoose");
         assertThat(selectedItem.getQuality(), is(6));
         assertThat(selectedItem.getSellIn(), is(4));
+    }
+
+    private void callUpdateQualityAmountOfTimes(GildedRose gd, int calls) {
+        for (int i = 0; i < calls; i++)
+            gd.updateQuality();
     }
 
     private Item getItem(List<Item> items, String name) {
