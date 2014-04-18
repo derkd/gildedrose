@@ -4,13 +4,20 @@ import java.util.List;
 
 public class GildedRose {
 
-    private static List<Item> items = null;
+    private List<Item> items = null;
 
+    public GildedRose() {
+        initializeItems();
+    }
 
     public static void main(String[] args) {
-
         System.out.println("OMGHAI!");
 
+        GildedRose gd = new GildedRose();
+        gd.updateQuality();
+    }
+
+    private void initializeItems() {
         items = new ArrayList<Item>();
         items.add(new Item("+5 Dexterity Vest", 10, 20));
         items.add(new Item("Aged Brie", 2, 0));
@@ -18,11 +25,9 @@ public class GildedRose {
         items.add(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
         items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
         items.add(new Item("Conjured Mana Cake", 3, 6));
-
-        updateQuality();
     }
 
-    public static void updateQuality() {
+    public void updateQuality() {
         for (Item item : items) {
             if ((!"Aged Brie".equals(item.getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
                 if (item.getQuality() > 0) {
@@ -74,4 +79,7 @@ public class GildedRose {
         }
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
 }
