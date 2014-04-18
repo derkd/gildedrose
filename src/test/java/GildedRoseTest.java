@@ -28,6 +28,18 @@ public class GildedRoseTest {
         assertThat(selectedItem.getSellIn(), is(9));
     }
 
+    @Test
+    public void should_decrease_quality_and_sell_in_by_1_for_Elixir_of_the_Mongoose() throws Exception {
+        GildedRose gd = new GildedRose();
+
+        gd.updateQuality();
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Elixir of the Mongoose");
+        assertThat(selectedItem.getQuality(), is(6));
+        assertThat(selectedItem.getSellIn(), is(4));
+    }
+
     private Item getItem(List<Item> items, String name) {
         for (Item item : items) {
             if (item.getName().equals(name))
