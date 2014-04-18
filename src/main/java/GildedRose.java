@@ -37,7 +37,7 @@ public class GildedRose {
     private void calculateQuality(Item item) {
         if (isNot(item, "Aged Brie") && isNot(item, "Backstage passes to a TAFKAL80ETC concert")) {
             if (isQualityGreaterThanZero(item)) {
-                if (isNot(item, "Sulfuras, Hand of Ragnaros")) {
+                if (isNot(item, "Sulfuras, Hand of Ragnaros") && isNot(item, "Conjured Mana Cake")) {
                     item.setQuality(item.getQuality() - 1);
                 }
             }
@@ -45,9 +45,12 @@ public class GildedRose {
 
         calculateAgedBrie(item);
         calculateBackstagePasses(item);
+        calculateConjuredManaCake(item);
+    }
 
+    private void calculateConjuredManaCake(Item item) {
         if (is(item, "Conjured Mana Cake")) {
-            item.setQuality(item.getQuality() - 1);
+            item.setQuality(item.getQuality() - 2);
         }
     }
 
