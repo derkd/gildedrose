@@ -135,6 +135,15 @@ public class GildedRoseTest {
         assertThat(selectedItem.getSellIn(), is(2));
     }
 
+    @Test
+    public void should_decrease_quality_to_zero_after_3_days_as_for_Conjured_Mana_Cake() throws Exception {
+        callUpdateQualityAmountOfTimes(gd, 4);
+
+        CalculationItem selectedItem = getItem("Conjured Mana Cake");
+        assertThat(selectedItem.getQuality(), is(0));
+        assertThat(selectedItem.getSellIn(), is(-1));
+    }
+
     private void callUpdateQualityAmountOfTimes(GildedRose gd, int calls) {
         for (int i = 0; i < calls; i++)
             gd.updateQuality();
