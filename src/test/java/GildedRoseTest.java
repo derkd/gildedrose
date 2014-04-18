@@ -64,6 +64,30 @@ public class GildedRoseTest {
         assertThat(selectedItem.getSellIn(), is(-1));
     }
 
+    @Test
+    public void should_increase_in_quality_the_older_it_gets_for_Aged_Brie() throws Exception {
+        GildedRose gd = new GildedRose();
+
+        gd.updateQuality();
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Aged Brie");
+        assertThat(selectedItem.getQuality(), is(1));
+        assertThat(selectedItem.getSellIn(), is(1));
+    }
+
+    @Test
+    public void should_never_exceeds_quality_of_50_for_Aged_Brie() throws Exception {
+        GildedRose gd = new GildedRose();
+
+        callUpdateQualityAmountOfTimes(gd, 27);
+
+        List<Item> items = gd.getItems();
+        Item selectedItem = getItem(items, "Aged Brie");
+        assertThat(selectedItem.getQuality(), is(50));
+        assertThat(selectedItem.getSellIn(), is(-25));
+    }
+
     private void callUpdateQualityAmountOfTimes(GildedRose gd, int calls) {
         for (int i = 0; i < calls; i++)
             gd.updateQuality();
