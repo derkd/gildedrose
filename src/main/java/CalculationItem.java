@@ -7,7 +7,4 @@ public interface CalculationItem {
 
     int getQuality();
 
-    void setSellIn(int sellIn);
-
-    void setQuality(int quality);
 }

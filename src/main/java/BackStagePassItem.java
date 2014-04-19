@@ -6,25 +6,21 @@ public class BackStagePassItem extends Item implements CalculationItem {
 
     @Override
     public void calculate() {
-        if (quality < 50) {
+        if (ItemHelper.isQualityLessThan50(this)) {
             setQuality(getQuality() + 1);
 
-            if (getSellIn() < 11) {
-                if (quality < 50) {
-                    setQuality(getQuality() + 1);
-                }
+            if (ItemHelper.isSellInLessThan(11, this)) {
+                setQuality(getQuality() + 1);
             }
 
-            if (getSellIn() < 6) {
-                if (quality < 50) {
-                    setQuality(getQuality() + 1);
-                }
+            if (ItemHelper.isSellInLessThan(6, this)) {
+                setQuality(getQuality() + 1);
             }
-
         }
 
         setSellIn(getSellIn() - 1);
-        if (sellIn < 0)
+
+        if (ItemHelper.isSellInLessThan(0, this))
             setQuality(0);
     }
 }

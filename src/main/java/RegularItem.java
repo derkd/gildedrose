@@ -5,13 +5,13 @@ public class RegularItem extends Item implements CalculationItem {
 
     @Override
     public void calculate() {
-        if (getQuality() > 0)
+        if (ItemHelper.isQualityGreaterThanZero(this)) {
             setQuality(getQuality() - 1);
 
-        setSellIn(getSellIn() - 1);
+            setSellIn(getSellIn() - 1);
 
-        if (getSellIn() < 0 && getQuality() > 0)
-            setQuality(getQuality() - 1);
-
+            if (ItemHelper.isSellInLessThan(0, this))
+                setQuality(getQuality() - 1);
+        }
     }
 }

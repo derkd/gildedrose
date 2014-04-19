@@ -5,7 +5,5 @@ public class SulfurasItem extends Item implements CalculationItem{
     }
 
     @Override
-    public void calculate() {
-
-    }
+    public void calculate() { }
 }

@@ -6,8 +6,9 @@ public class ConjuredManaCakeItem extends Item implements CalculationItem{
 
     @Override
     public void calculate() {
-        if (quality > 0)
+        if (ItemHelper.isQualityGreaterThanZero(this))
             setQuality(getQuality() - 2);
+
         setSellIn(getSellIn() - 1);
     }
 }

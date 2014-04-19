@@ -5,12 +5,12 @@ public class AgedBrieItem extends Item implements CalculationItem{
 
     @Override
     public void calculate() {
-        if (quality < 50) {
+        if (ItemHelper.isQualityLessThan50(this))
             setQuality(getQuality() + 1);
-        }
-        setSellIn(this.getSellIn() - 1);
-        if(getSellIn() < 0 && getQuality() < 50){
+
+        setSellIn(getSellIn() - 1);
+
+        if(ItemHelper.isSellInLessThan(0, this) && ItemHelper.isQualityLessThan50(this))
             setQuality(getQuality() + 1);
-        }
     }
 }
