@@ -109,7 +109,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_drop_quality_when_convert_is_over_for_Backstage_passes_to_a_TAFKAL80ETC_concert() throws Exception {
+    public void should_drop_quality_when_concert_is_over_for_Backstage_passes_to_a_TAFKAL80ETC_concert() throws Exception {
         callUpdateQualityAmountOfTimes(gd, 16);
 
         CalculationItem selectedItem = getItem("Backstage passes to a TAFKAL80ETC concert");

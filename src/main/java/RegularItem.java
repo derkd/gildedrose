@@ -5,9 +5,13 @@ public class RegularItem extends Item implements CalculationItem {
 
     @Override
     public void calculate() {
-        if (quality > 0) {
-            this.setQuality(this.getQuality() - 1);
-        }
-        this.setSellIn(this.getSellIn() - 1);
+        if (getQuality() > 0)
+            setQuality(getQuality() - 1);
+
+        setSellIn(getSellIn() - 1);
+
+        if (getSellIn() < 0 && getQuality() > 0)
+            setQuality(getQuality() - 1);
+
     }
 }
